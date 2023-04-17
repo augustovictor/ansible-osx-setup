@@ -40,6 +40,7 @@
         - vlc
         - shiftit
         - brave-browser
+        - whatsapp
         # - zoom
 
     - name: "Install homebrew packages"
@@ -167,6 +168,16 @@
         name: gpg.program
         scope: global
         value: gpg
+      tags:
+        - git
+
+    - name: Configure ~/.gitconfig
+      become: true
+      become_user: root
+      git_config:
+        name: color.ui
+        scope: global
+        value: auto
       tags:
         - git
 
