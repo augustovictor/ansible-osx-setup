@@ -182,6 +182,18 @@
       tags:
         - git
 
+    - name: Configure ~/.gitconfig
+      become: true
+      become_user: root
+      blockinfile:
+        path: /Users/{{ lookup('env', 'USER') }}/.ssh/config
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+        block: |
+          Host *
+            IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+      tags:
+        - git
+
     - name: "Create a default asdf configuration"
       template:
         src: templates/.asdfrc.j2
