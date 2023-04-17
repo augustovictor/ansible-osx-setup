@@ -32,6 +32,7 @@
         - 1password
         - datagrip
         - docker
+        - intellij-idea
         - kitty
         - ngrok
         - slack
@@ -83,7 +84,7 @@
           # 'vim',
           # 'watchman',
           # 'xz',
-          # 'yarn',
+          'yarn',
           'yq',
           # 'zlib',
           'zsh',
