@@ -71,7 +71,6 @@
           # 'libxslt',
           # 'libyaml',
           'mas',
-          'neovim',
           'openssl' ,
           # 'pkg-config',
           # 'postgresql',
@@ -103,6 +102,11 @@
         - 973134470  # Be focused
       tags:
         - appstore
+
+    - name: "Reduce key repetition interval"
+      shell: |
+        defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+        defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 
     # - name: Get the path to ZSH
     #   become: false
@@ -214,6 +218,7 @@
         - nodejs
         - python
         - java
+        - neovim
       tags:
         - node
         - ruby
@@ -246,6 +251,12 @@
     - name: "Reload shell"
       shell: source /Users/{{ lookup('env', 'USER') }}/.asdf/asdf.sh
 
+    - name: "Install neovim"
+      shell: |
+        source /Users/{{ lookup('env', 'USER') }}/.asdf/asdf.sh
+        asdf install neovim nightly
+        asdf global neovim nightly
+
     - name: "Install Default Python"
       shell: |
         source /Users/{{ lookup('env', 'USER') }}/.asdf/asdf.sh
@@ -274,9 +285,7 @@
       tags:
         - node
 
-        
     - name: re-generate bins now we've installed some yarn packages
       shell: asdf reshim nodejs
       tags:
         - node
-        
