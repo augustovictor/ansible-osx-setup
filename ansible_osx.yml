@@ -22,14 +22,16 @@
           homebrew/cask-versions,
           thoughtbot/formulae,
           weaveworks/tap,
+          homebrew/cask-fonts,
         ]
 
     - name: Install core packages via brew casks
       community.general.homebrew_cask:
         name: "{{ item }}"
-      ignore_errors: yes
+      ignore_errors: true
       with_items:
         - 1password
+        - font-jetbrains-mono
         - datagrip
         - docker
         - intellij-idea
@@ -90,7 +92,7 @@
           'zsh',
         ]
         state: present
-        update_homebrew: yes
+        update_homebrew: true
 
     - name: "Install from Mac app store"
       shell: mas install {{ item }}
@@ -133,7 +135,7 @@
     #     src: templates/.zshrc.j2
     #     dest: /Users/{{ lookup('env', 'USER') }}/.zshrc
     #     owner: "{{ lookup('env', 'USER') }}"
-    #     force: yes
+    #     force: true
 
     - git:
         repo: https://github.com/asdf-vm/asdf.git
@@ -207,7 +209,7 @@
         src: templates/.asdfrc.j2
         dest: /Users/{{ lookup('env', 'USER') }}/.asdfrc
         owner: "{{ lookup('env', 'USER') }}"
-        force: yes
+        force: true
 
     - name: "Install asdf plugins"
       shell: |
